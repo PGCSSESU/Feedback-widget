@@ -5,7 +5,7 @@ Welcome to your new TanStack app!
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](src/assets/image1.png)
+![Home Page](/feedback-widgetsrc/assets/image1.png)
 
 ### Feedback
 ![Feedback](src/assets/image.png)
