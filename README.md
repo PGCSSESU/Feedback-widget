@@ -5,13 +5,13 @@ Welcome to your new TanStack app!
 ## 📸 Screenshots
 
 ### Home Page
-![Home Page](/feedback-widgetsrc/assets/image1.png)
+![Home Page](/feedback-widget/src/assets/image1.png)
 
 ### Feedback
-![Feedback](src/assets/image.png)
+![Feedback](/feedback-widget/src/assets/image.png)
 
 ### Thanks
-![Thanks](src/assets/image3.png)
+![Thanks](/feedback-widget/src/assets/image3.png)
 
 
 To run this application:
