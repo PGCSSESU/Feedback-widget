@@ -2,18 +2,6 @@ Welcome to your new TanStack app!
 
 # Getting Started
 
-## 📸 Screenshots
-
-### Home Page
-![Home Page](src/assets/image1.png)
-
-### Feedback
-![Feedback](/feedback-widget/src/assets/image.png)
-
-### Thanks
-![Thanks](/feedback-widget/src/assets/image3.png)
-
-
 To run this application:
 
 ```bash
