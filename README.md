@@ -14,8 +14,6 @@ Welcome to your new TanStack app!
 ### Thanks
 ![Thanks](src/assets/image3.png)
 
-### Message
-![Message](src/assets/image.png)
 
 To run this application:
 
