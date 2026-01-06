@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Widget Dev</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="min-h-screen bg-linear-to-br from-emerald-50 via-teal-50 to-white
+           text-emerald-900 font-sans p-12">
+      <div class="mx-auto max-w-4xl rounded-2xl bg-green-50 p-10">
+      <h2 class="text-3xl font-semibold  mb-3">
+        Feedback Widget Demo
+      </h2>
+      
+
+      <p class="text-base leading-relaxed">
+        This page simulates a real website environment.
+        Your feedback widget should appear in the
+        <strong>bottom-right corner</strong>.
+      </p>
+
+    </div>
+    <feedback-widget data-position="bottom-right"></feedback-widget>
+    <!-- <script type="module" src="./src/widget/init.tsx"></script> -->
+     <script
+      src="./dist/feedback-widget.js"
+      data-position="bottom-right"
+    ></script>
+  </body>
+</html>

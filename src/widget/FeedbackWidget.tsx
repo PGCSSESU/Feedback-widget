@@ -1,5 +1,6 @@
+import { mountWidget } from "@/mountWidget";
+
 export type WidgetConfig = {
-  projectId: string;
   position: "bottom-right" | "bottom-left";
 };
 
@@ -12,12 +13,8 @@ export class FeedbackWidget extends HTMLElement {
   }
 
   connectedCallback() {
-    import("../mountWidget.tsx").then(({ mountWidget }) => {
-      mountWidget(this.shadow, {
-        projectId: this.dataset.projectId!,
-        position: (this.dataset.position as WidgetConfig["position"]) ?? "bottom-right",
-      });
-    });
+    const position = this.dataset.position === "bottom-left" ? "bottom-left" : "bottom-right";
+    mountWidget(this.shadow, { position });
   }
 }
 

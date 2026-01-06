@@ -8,10 +8,6 @@ if (!script) {
 
 const widget = document.createElement("feedback-widget");
 
-if (script.dataset.projectId) {
-  widget.dataset.projectId = script.dataset.projectId;
-}
-
 if (script.dataset.position) {
   widget.dataset.position = script.dataset.position;
 }

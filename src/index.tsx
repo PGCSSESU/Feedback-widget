@@ -1,1 +1,0 @@
-import "./widget/init.tsx";
