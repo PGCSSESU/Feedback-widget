@@ -1,9 +1,9 @@
 import { mountWidget } from "@/mountWidget";
 
 export type WidgetConfig = {
+  projectId: string;
   position: "bottom-right" | "bottom-left";
 };
-
 export class FeedbackWidget extends HTMLElement {
   private shadow: ShadowRoot;
 
@@ -14,7 +14,12 @@ export class FeedbackWidget extends HTMLElement {
 
   connectedCallback() {
     const position = this.dataset.position === "bottom-left" ? "bottom-left" : "bottom-right";
-    mountWidget(this.shadow, { position });
+    const projectId = this.dataset.projectid
+
+    if (!projectId) {
+      throw new Error("Missing projectId");
+    }
+    mountWidget(this.shadow, { config: { projectId, position } });
   }
 }
 

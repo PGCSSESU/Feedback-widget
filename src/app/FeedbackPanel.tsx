@@ -26,6 +26,7 @@ export default function FeedbackPanel({
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
+          projectId: config.projectId,
           rating,
           message,
           email,
@@ -34,8 +35,27 @@ export default function FeedbackPanel({
       });
 
       setStatus("success");
-    } catch {
+      window.dispatchEvent(
+        new CustomEvent("feedback:submitted", {
+          detail: {
+            projectId: config.projectId,
+            rating,
+            message,
+            email,
+          },
+        })
+      );
+    } catch (error) {
       setStatus("error");
+
+      window.dispatchEvent(
+        new CustomEvent("feedback:error", {
+          detail: {
+            projectId: config.projectId,
+            error,
+          },
+        })
+      );
     }
   }
 
@@ -53,6 +73,7 @@ export default function FeedbackPanel({
           <CircleCheckBig className="mx-auto text-green-600" />
           <p className="font-medium">Thank you for your feedback</p>
           <button
+            type="button"
             onClick={onClose}
             className="w-full rounded border px-3 py-1.5 text-sm"
           >
@@ -63,40 +84,47 @@ export default function FeedbackPanel({
         <>
           <div className="mb-3 flex items-center justify-between">
             <h3 className="text-sm font-medium">Feedback</h3>
-            <button onClick={onClose}>
+            <button type="button" onClick={onClose}>
               <X size={16} />
             </button>
           </div>
 
-        
           <div className="flex gap-1">
             {[1, 2, 3, 4, 5].map((v) => (
-              <button key={v} onClick={() => setRating(v)}>
+              <button
+                key={v}
+                type="button"
+                onClick={() => setRating(v)}
+              >
                 <Star
-                  className={`h-5 w-5 ${rating >= v ? "fill-green-900" : ""}`}
+                  className={`h-5 w-5 ${
+                    rating >= v ? "fill-green-900" : ""
+                  }`}
                 />
               </button>
             ))}
           </div>
 
           <textarea
-            className="mt-3 w-full rounded border-solid border px-2 py-1.5 text-sm"
+            className="mt-3 w-full rounded border px-2 py-1.5 text-sm"
             placeholder="Your feedback"
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+
           <input
             type="email"
-            className="mt-2 w-full rounded border-solid border px-2 py-1.5 text-sm"
+            className="mt-2 w-full rounded border px-2 py-1.5 text-sm"
             placeholder="Email (optional)"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
 
           <button
+            type="button"
             onClick={submit}
             disabled={status === "submitting"}
-            className="mt-3 w-full rounded border-solid border px-3 py-1.5 text-sm"
+            className="mt-3 w-full rounded border px-3 py-1.5 text-sm"
           >
             {status === "submitting" ? "Submitting..." : "Submit"}
           </button>

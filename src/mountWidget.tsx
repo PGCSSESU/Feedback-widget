@@ -4,7 +4,7 @@ import App from "./app/App.tsx";
 import widgetCss from "./styles/widget.css?inline";
 import { WidgetConfig } from "./widget/FeedbackWidget.tsx";
 
-export function mountWidget(shadowRoot: ShadowRoot,config: WidgetConfig){
+export function mountWidget(shadowRoot: ShadowRoot, {config}: {config: WidgetConfig}) {
   const style = document.createElement("style");
   style.textContent = widgetCss;
   shadowRoot.appendChild(style);

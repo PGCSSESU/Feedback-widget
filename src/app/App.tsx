@@ -1,10 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MessageSquare } from "lucide-react";
 import FeedbackPanel from "./FeedbackPanel";
 import { WidgetConfig } from "@/widget/FeedbackWidget";
 
 export default function App({ config }: { config: WidgetConfig }) {
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    const feed = ((window as any).FeedbackWidget ??= {});
+    feed.open = () => {
+      setOpen(true);
+      window.dispatchEvent(new CustomEvent("feedback:opened"));
+    };
+
+    feed.close = () => setOpen(false);
+
+  }, []);
 
   function openWidget() {
     setOpen(true);
@@ -19,6 +30,7 @@ export default function App({ config }: { config: WidgetConfig }) {
   return (
     <>
       <button
+        type="button"
         onClick={openWidget}
         aria-label="Open feedback"
         className={`fixed ${positionClass} z-50
